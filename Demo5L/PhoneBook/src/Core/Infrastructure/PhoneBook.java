@@ -21,7 +21,6 @@ public class PhoneBook {
         }
         return flag;
     }
-
     public Contact getContact(int index) {
         return contains(index) ? contacts.get(index) : null;
     }
@@ -35,17 +34,20 @@ public class PhoneBook {
         return flag;
     }
 
+    public boolean removeAll() {
+        boolean flag = false;
+        if (!contacts.isEmpty()) {
+            contacts.clear();
+            flag = true;
+        }
+        return flag;
+    }
+
     public boolean contains(int index) {
         return contacts != null
                 && contacts.size() > index;
     }
 
-    public List<Contact> getContacts() {
-        if (contacts.isEmpty()) {
-            return null;
-        }
-        return contacts;
-    }
 
     public int count() {
         return contacts.size();

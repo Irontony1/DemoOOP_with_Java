@@ -4,18 +4,17 @@ import java.lang.reflect.Field;
 
 public class Contact implements Comparable<Contact> {
 
-    public String birdDay;
+    public String birdDay; // in development
     public String firstName;
     public String lastName;
-    public String company;
+    public String company; // in development
     public String phone;
-    //public Email email;
-    public String description;
+    public String description; // in development
 
-    public Contact(String firstName, String lastName, String description) {
+    public Contact(String firstName, String lastName, String phone) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.description = description;
+        this.phone = phone;
     }
 
     @Override

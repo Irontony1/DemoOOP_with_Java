@@ -34,9 +34,6 @@ public class Model {
             while (fname != null) {
                 String lname = reader.readLine();
                 String phone = reader.readLine();
-                reader.readLine();
-                reader.readLine();
-                reader.readLine();
                 this.currentBook.add(new Contact(fname, lname, phone));
                 fname = reader.readLine();
             }
@@ -48,18 +45,14 @@ public class Model {
     }
 
     public void save() {
-        try (FileWriter writer = new FileWriter(path, false)) {
+        try (FileWriter writer = new FileWriter(path, true)) {
             for (int i = 0; i < currentBook.count(); i++) {
                 Contact contact = currentBook.getContact(i);
-                writer.append(String.format("Имя: %s", contact.firstName));
-                writer.append(String.format("Фамилия: %s", contact.lastName));
-                writer.append(String.format("Номер телефона: %s", contact.phone));
-                writer.append(String.format("Д/р: %s", contact.birdDay));
-                writer.append(String.format("Компания: %s", contact.company));
-                writer.append(String.format("Описание: %s", contact.description));
+                writer.append(String.format("%s\n", contact.firstName));
+                writer.append(String.format("%s\n", contact.lastName));
+                writer.append(String.format("%s\n", contact.phone));
             }
             writer.flush();
-            writer.close();
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }

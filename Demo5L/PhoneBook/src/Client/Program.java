@@ -1,6 +1,5 @@
 package Client;
 
-import Core.MVP.Presenter;
 import UI.App;
 
 public class Program {

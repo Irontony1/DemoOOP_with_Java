@@ -2,27 +2,29 @@ package UI;
 
 import Core.MVP.IView;
 import Core.MVP.Presenter;
-import Extension.Config;
-
+import Config.Config;
 import java.util.Scanner;
 
 public class App {
     public static void buttonClick() {
-        System.out.print("\033[H\033[J");
         IView view = new ConsoleView();
-        Presenter presenter = new Presenter(view, Config.pathDb);
+        Presenter presenter = new Presenter(view, Config.pathDb, Config.pathLog);
 
-        presenter.LoadFromFile();
+        view.showMainMenu();
 
         try (Scanner in = new Scanner(System.in)) {
 
             while (true) {
-                System.out.printf("1 - prev  %s/%s  2 - next", presenter.currentIndex() + 1, presenter.totalIndex());
-                String key = in.next();
+                String buttonKey = in.next();
                 System.out.print("\033[H\033[J");
-                switch (key) {
-                    case "1" -> presenter.prev();
-                    case "2" -> presenter.next();
+                switch (buttonKey) {
+                    case "1" -> presenter.add();
+                    case "2" -> presenter.remove();
+                    case "3" -> presenter.LoadFromFile();
+                    case "4" -> presenter.saveToFile();
+                    case "5" -> System.exit(0);
+                    case "p" -> presenter.prev();
+                    case "n" -> presenter.next();
                     default -> System.out.println("Такой команды нет");
                 }
             }
